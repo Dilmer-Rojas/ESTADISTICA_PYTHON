@@ -97,9 +97,26 @@ def main():
             else:
                 print("No hay tablas en la base de datos.")
 
+            
+            print("Ingrese 1 para mostrar el dataset...")
+            print("Ingrese 2 si quiere acceder a las operaciones estadísticas...")
+            print("Ingrese 3 para salir")
+            op = int(input("Elija: "))
+            if op == 1:
+                nombre_tabla = input("Ingrese el nombre de la tabla: ")
+                query = f"SELECT * FROM {nombre_tabla};"
+                query = pd.read_sql_query(query, conn)
+                print(query)
+            elif op == 2:
+                menu_op()
+            else:
+                print("Saliendo")
+                time.sleep(2)
+                print("Gracias!")
+                exit
+            
             # Cerrar conexión
-            #conn.close()
-    
+            conn.close()
         except sqlite3.Error as e:
             print(f"Error al acceder a la base de datos: {e}")
         
