@@ -59,6 +59,9 @@ def main():
             print(data)
         elif op == 2:
             menu_op()
+            opc = int(input("Elija una opción : "))
+            if opc == 1:
+                print("Media")
         else:
             print("Saliendo")
             time.sleep(2)
