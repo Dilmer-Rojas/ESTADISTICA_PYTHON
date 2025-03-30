@@ -1,6 +1,20 @@
 import numpy as np
+import pandas as pd
+import sqlite3
 import time
 import os
+
+def datos(data):
+    ruta = input("Ingrese la ruta del archivo sin extensión ejemplo (/home/user/ventas): ")
+    extension = input("Ingrese la extensión (.csv, .xlsx): ")
+    ruta_file = ruta + extension
+    if extension == ".csv":
+        data = pd.read_csv(ruta_file)
+        print(data.head())
+    elif extension == ".xlsx":
+        data = pd.read_excel(ruta_file)
+    else:
+        print("Archivo inválido...")
 
 # Promedio o media
 def media(lista, n):
@@ -100,11 +114,10 @@ def out_iqr(lista):
     print("Outliers detectados:", ", ".join(map(str, outliers)))  # Outliers separados por comas
     pass
 
-
-# Función principal
-def main():
+# Función de operaciones
+def menu_operaciones():
     print("""
-                MENÚ
+                MENÚ DE OPERACIONES ESTADÍSTICAS
         1. Calcular la media (promedio)
         2. Calcular la mediana
         3. Calcular la moda
@@ -211,5 +224,34 @@ def main():
             print("Opción Inválida")
             time.sleep(1)
             os.system("cls") # Investigar para que funcione para windows, linux, etc
-            main()
+
+# Función principal
+def main():
+    os.system("cls")
+    print("""
+        #####################
+        #   Menú principal  #
+        #####################
+        """)
+    print("")
+    print("""
+        Elija como desea cargar los datos
+          
+        1. Desde un archivo
+        2. Manualmente
+        3. Salir
+        """)
+    while True:
+        opc = int(input("Elija una opción: "))
+        if opc == 1:
+            # Ejecutar la función correspondiente: datos()
+            pass
+        elif opc == 2:
+            # Ejecutar la función directa: operaciones()
+            pass
+        else:
+            print("Opción Incorrecta...")
+            
 main()
+
+
